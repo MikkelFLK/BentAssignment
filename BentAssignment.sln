@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BentAssignment", "BentAssignment\BentAssignment.csproj", "{1C0A8FD1-056F-4B0B-949D-71BBA7F4C6F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C0A8FD1-056F-4B0B-949D-71BBA7F4C6F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C0A8FD1-056F-4B0B-949D-71BBA7F4C6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C0A8FD1-056F-4B0B-949D-71BBA7F4C6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C0A8FD1-056F-4B0B-949D-71BBA7F4C6F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF10D96B-19B3-4A7D-A053-EF3F69F847BE}
+	EndGlobalSection
+EndGlobal
