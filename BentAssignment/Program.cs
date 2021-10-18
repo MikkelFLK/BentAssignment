@@ -63,11 +63,9 @@ namespace BentAssignment
                 }
                 long start = long.Parse(startNumber);
                 long end = Convert.ToInt64(endNumber);
-                IList<long> numbers = CreateRange(start, end).ToList();
                 Stopwatch sw1 = Stopwatch.StartNew();
-                List<long> NumOfPrims = (List<long>)GetPrimeList(numbers);
+                List<long> NumOfPrims = (List<long>)GetPrimeList(start, end);
                 sw1.Stop();
-                NumOfPrims.Sort();
                 foreach (var primes in NumOfPrims)
                 {
                     Console.WriteLine(primes);
@@ -98,9 +96,8 @@ namespace BentAssignment
                 }
                 long start = long.Parse(startNumber);
                 long end = Convert.ToInt64(endNumber);
-                IList<long> numbers = CreateRange(start, end).ToList();
                 Stopwatch sw1 = Stopwatch.StartNew();
-                List<long> NumOfPrims = (List<long>)GetPrimeListWithParallel(numbers);
+                List<long> NumOfPrims = (List<long>)GetPrimeListWithParallel(start, end);
                 sw1.Stop();
                 NumOfPrims.Sort();
                 foreach (var primes in NumOfPrims)
@@ -111,22 +108,11 @@ namespace BentAssignment
             }
         }
 
-        private static IEnumerable<long> CreateRange(long start, long end)
+        private static IList<long> GetPrimeList(long start, long end)
         {
-            var limit = start + end;
+            var primeNumbers = new List<long>();
 
-            while (start < limit)
-            {
-                yield return start;
-                start++;
-            }
-        }
-
-        private static IList<long> GetPrimeList(IList<long> numbers)
-        {
-            var primeNumbers = new ConcurrentBag<long>();
-
-            foreach (var number in numbers)
+            for(long number = start; number <= end; number++)
             {
                 if (IsPrime(number))
                 {
@@ -136,18 +122,20 @@ namespace BentAssignment
             return primeNumbers.ToList();
         }
 
-        private static IList<long> GetPrimeListWithParallel(IList<long> numbers)
+        private static IList<long> GetPrimeListWithParallel(long start, long end)
         {
             var primeNumbers = new ConcurrentBag<long>();
 
-            Parallel.ForEach(numbers, number =>
+            Parallel.ForEach(Partitioner.Create(start, end +1), range =>
             {
-                if (IsPrime(number))
+                for (long number = range.Item1; number < range.Item2; number++)
                 {
+                    if (IsPrime(number))
+                    {
                     primeNumbers.Add(number);
+                    }
                 }
             });
-
             return primeNumbers.ToList();
         }
 
